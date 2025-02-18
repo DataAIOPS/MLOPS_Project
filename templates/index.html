@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Loan Default Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4">
+            <h2 class="text-center text-primary">Bank Loan Default Prediction</h2>
+            <form action="/" method="POST">
+                <div class="row">
+                    <!-- Loop through form fields -->
+                    {% for field in ["age", "income", "loanamount", "creditscore", "monthsemployed",
+                                     "numcreditlines", "interestrate", "loanterm", "dtiratio", "education",
+                                     "employmenttype", "maritalstatus", "hasmortgage", "hasdependents",
+                                     "loanpurpose", "hascosigner"] %}
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">{{ field.replace("_", " ").title() }}</label>
+                            <input type="text" name="{{ field }}" class="form-control" required>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Predict</button>
+            </form>
+            {% if prediction_text %}
+                <div class="alert alert-info mt-3 text-center">{{ prediction_text }}</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
